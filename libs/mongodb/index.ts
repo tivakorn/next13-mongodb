@@ -1,17 +1,15 @@
 // Dependencies
 import { Db, MongoClient, MongoClientOptions, ReadPreference } from 'mongodb'
 
-const { MONGODB_URL, MONGODB_PORT, MONGODB_DBNAME, MONGODB_USERNAME, MONGODB_PASSWORD } = process.env
-
 const connect = async (): Promise<MongoClient> => {
 
   let client
   let clientPromise: Promise<MongoClient>
 
-  const MONGODB_URI = `mongodb+srv://${MONGODB_URL}`
+  const MONGODB_URI = `mongodb+srv://${'omega.fkb19cw.mongodb.net'}`
 
   const MONGODB_OPTION: MongoClientOptions = {
-    auth: { username: MONGODB_USERNAME, password: MONGODB_PASSWORD },
+    auth: { username: 'pnnene', password: 'cG5uZW5l' },
     readPreference: ReadPreference.SECONDARY,
     w: 'majority',
   }
