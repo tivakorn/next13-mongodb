@@ -6,19 +6,19 @@ const connect = async (): Promise<MongoClient> => {
   let client
   let clientPromise: Promise<MongoClient>
 
-  const MONGODB_URI = `mongodb+srv://${'omega.fkb19cw.mongodb.net'}`
+  const MONGODB_URI = process.env.MONGODB_URI || ''
 
-  const MONGODB_OPTION: MongoClientOptions = {
-    auth: { username: 'pnnene', password: 'cG5uZW5l' },
-    readPreference: ReadPreference.SECONDARY,
-    w: 'majority',
-  }
+  // const MONGODB_OPTION: MongoClientOptions = {
+  //   auth: { username: 'pnnene', password: 'cG5uZW5l' },
+  //   readPreference: ReadPreference.SECONDARY,
+  //   w: 'majority',
+  // }
 
   if (process.env.NODE_ENV === 'development') {
 
     if (!global._mongoClientPromise) {
 
-      client = new MongoClient(MONGODB_URI, MONGODB_OPTION)
+      client = new MongoClient(MONGODB_URI)
 
       global._mongoClientPromise = client.connect()
     }
@@ -27,7 +27,7 @@ const connect = async (): Promise<MongoClient> => {
 
   } else {
 
-    client = new MongoClient(MONGODB_URI, MONGODB_OPTION)
+    client = new MongoClient(MONGODB_URI)
 
     clientPromise = client.connect()
   }
