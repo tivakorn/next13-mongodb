@@ -1,4 +1,5 @@
-import * as ModelMember from '../models/members'
+import MemberList from '@/components/list/MemberList'
+import * as ModelMember from '@/models/members'
 
 const HomePage = async () => {
 
@@ -6,9 +7,9 @@ const HomePage = async () => {
 
   return (
     <div>
-      {
-        memberList.map((item, key) => (<h3 key={key}>{item.name || ''}</h3>))
-      }
+      <MemberList
+        memberList={memberList}
+      />
     </div>
   )
 }
